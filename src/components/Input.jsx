@@ -3,7 +3,7 @@ import searchIcon from "../assets/images/icon-search.svg";
 
 const Input = () => {
   return (
-    <form className="flex flex-col h-max w-screen p-4 md:justify-center justify-between items-center gap-2 md:flex-row md:gap-2">
+    <form className="md:col-start-1 md:col-end-2 md:row-start-1 md: flex flex-col h-max w-screen p-4 md:justify-center justify-between items-center gap-2 md:flex-row md:gap-2">
       <div className="md:grow-0 grow w-[90%] flex mt-2 md:mt-0 md:h-12 h-10 md:justify-center justify-start gap-0 md:w-[50%]">
         <img
           src={searchIcon}

@@ -1,6 +1,4 @@
-
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import ThemeButton from '../components/ThemeButton';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as reactRedux from 'react-redux';
