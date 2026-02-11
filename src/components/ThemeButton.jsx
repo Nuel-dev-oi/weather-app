@@ -18,7 +18,7 @@ const ThemeButton = () => {
 
   return (
     <button
-      className="shadow-lg shadow-blue-900 dark:shadow-zinc-200  p-2 bg-blue-900 rounded h-max dark:bg-green-400 dark:text-blue-900 text-black outline-0 active:outline-1 "
+      className="shrink max-[400px]:text-[12px] whitespace-nowrap shadow-lg shadow-blue-900 dark:shadow-zinc-200  p-2 bg-blue-900 rounded h-max dark:bg-green-400 dark:text-blue-900 text-black outline-0 active:outline-1 "
       onClick={() => dispatch(mode())}
     >
       {isDarkMode ? "Light Mode" : "Dark Mode"}

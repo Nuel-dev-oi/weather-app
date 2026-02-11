@@ -12,18 +12,18 @@ const App = () => {
 
   const handlePageReload = useCallback(() => {
     if (userTheme) {
-        document.documentElement.classList.add("dark");
-        if (!theme) {
-          dispatch(mode());
-        }
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", JSON.stringify(false));
-        if (theme) {
-          dispatch(mode());
-        }
+      document.documentElement.classList.add("dark");
+      if (!theme) {
+        dispatch(mode());
       }
-    }, [theme, userTheme, dispatch]);
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", JSON.stringify(false));
+      if (theme) {
+        dispatch(mode());
+      }
+    }
+  }, [theme, userTheme, dispatch]);
 
   useEffect(() => {
     window.addEventListener("load", handlePageReload);
@@ -33,12 +33,12 @@ const App = () => {
     };
   }, [handlePageReload]);
 
-  return ( 
-      <Layout>
-        {/* Other components go here */}
-        <Input />
-        <Screen />
-      </Layout>
+  return (
+    <Layout>
+      {/* Other components go here */}
+      <Input />
+      <Screen />
+    </Layout>
   );
 };
 

@@ -3,7 +3,7 @@
 
 @theme {
   --background-image-sm-screen-img: url("/src/assets/images/bg-today-small.svg");
-   --background-image-md-screen-img: url("/src/assets/images/bg-today-large.svg");
+  --background-image-md-screen-img: url("/src/assets/images/bg-today-large.svg");
 }
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -37,7 +37,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   /*padding: 0.6em 1.2em;*/
-  font-size: 1em;
+  /*font-size: 1em;*/
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
