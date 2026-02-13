@@ -33,7 +33,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="relative">
+    <header className="relative w-screen">
       <div
         ref={ref}
         className="top-0 shadow shadow-gray-400 w-screen h-16 bg-gray-400 dark:bg-gray-800 px-4 flex flex-row justify-between items-center gap-4"

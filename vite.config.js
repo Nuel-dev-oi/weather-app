@@ -5,7 +5,7 @@ import { qrcode } from "vite-plugin-qrcode";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), qrcode(), qrcode()],
+  plugins: [react(), tailwindcss(), qrcode()],
   test: {
     globals: true,
     environment: 'jsdom',
