@@ -33,7 +33,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="relative w-screen">
+    <header className="relative w-screen z-10">
       <div
         ref={ref}
         className="top-0 shadow shadow-gray-400 w-screen h-16 bg-gray-400 dark:bg-gray-800 px-4 flex flex-row justify-between items-center gap-4"
@@ -46,7 +46,7 @@ const Header = () => {
         <ThemeButton />
         <Unit />
       </div>
-      <div className="dark:text-white text-black font-bold text-5xl lg:text-4xl text-center w-screen mt-4 whitespace-pre md:whitespace-nowrap md:mt-5 md:mb-5">
+      <div className="p-2 bg-linear-to-r from-purple-500 via-red-950 to-yellow-600 bg-clip-text text-transparent dark:text-white font-extrabold dark:font-bold text-5xl md:text-5xl text-center w-screen mt-4 whitespace-pre md:whitespace-nowrap md:mt-5 md:mb-5">
         {"How's the\n sky looking\n today?"}
       </div>
     </header>

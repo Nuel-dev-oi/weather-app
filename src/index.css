@@ -4,6 +4,14 @@
 @theme {
   --background-image-sm-screen-img: url("/src/assets/images/bg-today-small.svg");
   --background-image-md-screen-img: url("/src/assets/images/bg-today-large.svg");
+  --background-image-sunny-img: url("/src/assets/images/icon-sunny.webp");
+  --background-image-storm-img: url("/src/assets/images/icon-storm.webp");
+  --background-image-snow-img: url("/src/assets/images/icon-snow.webp");
+  --background-image-rain-img: url("/src/assets/images/icon-rain.webp");
+  --background-image-partly-cloudy-img: url("/src/assets/images/icon-partly-cloudy.webp");
+  --background-image-overcast-img: url("/src/assets/images/icon-overcast.webp");
+  --background-image-fog-img: url("/src/assets/images/icon-fog.webp");
+  --background-image-drizzle-img: url("/src/assets/images/icon-drizzle.webp");
 }
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
