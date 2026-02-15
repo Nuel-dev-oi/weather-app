@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "./components/Layout.jsx";
 import Input from "./components/Input.jsx";
@@ -11,7 +11,36 @@ import HourForcast from "./components/HourForcast.jsx";
 const App = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
+  const weather = useSelector((state) => state.weather.data);
   const userTheme = JSON.parse(localStorage.getItem("theme"));
+  const [feelsLike, setFeelsLike] = useState(null);
+  const [humidity, setHumidity] = useState(null);
+  const [wind, setWind] = useState(null);
+  const [precipitation, setPrecipitation] = useState(null);
+
+  useEffect(() => {
+    (() => {
+      if (weather) {
+        const calculatedFeelsLike = Number(
+          weather.hourly.apparent_temperature.reduce((a, b) => a + b, 0) /
+            weather.hourly.apparent_temperature.length,
+        ).toFixed(2);
+        setFeelsLike(calculatedFeelsLike);
+
+        const calculatedHumidity = Number(
+          weather.hourly.relativehumidity_2m.reduce((a, b) => a + b, 0) /
+            weather.hourly.relativehumidity_2m.length,
+        ).toFixed(2);
+        setHumidity(calculatedHumidity);
+
+        const calculatedPrecipitation = Number(
+          weather.hourly.precipitation.reduce((a, b) => a + b, 0),
+        ).toFixed(2);
+        setPrecipitation(calculatedPrecipitation);
+        setWind(weather.current_weather.windspeed);
+      }
+    })();
+  }, [weather]);
 
   const handlePageReload = useCallback(() => {
     if (userTheme) {
@@ -42,7 +71,12 @@ const App = () => {
       <Input />
       <Screen />
       <Forecast
-        forecasts={["Forecast 1", "Forecast 2", "Forecast 3", "Forecast 4"]}
+        forecasts={[
+          ["Feels Like", feelsLike + "°"],
+          ["Humidity ", humidity + "%"],
+          ["Wind", wind + "km/h"],
+          ["Precipitation", precipitation + "mm"],
+        ]}
       />
       <DailyForecast
         dailycasts={[
@@ -55,7 +89,8 @@ const App = () => {
           "dailycast 7",
         ]}
       />
-      <HourForcast hourforcasts={[
+      <HourForcast
+        hourforcasts={[
           "hourcast 1",
           "hourcast 2",
           "hourcast 3",
@@ -63,8 +98,8 @@ const App = () => {
           "hourcast 5",
           "hourcast 6",
           "hourcast 7",
-          "hourcast 8"
-      ]}
+          "hourcast 8",
+        ]}
       />
     </Layout>
   );

@@ -6,9 +6,16 @@ const Forecast = ({ forecasts }) => {
       {forecasts.map((forecast, index) => (
         <div
           key={index}
-          className="shrink shadow-[0_1px_5px_0px] shadow-blue-400 dark:shadow-white dark:shadow-[0_1px_5px_0px] bg-gray-500 dark:bg-gray-700 w-[calc(100%/2.15)] md:w-[calc(100%/3.5)] h-30 p-4 dark:border-black rounded-[20px] max-[400px]:text-sm"
+          className="shrink flex flex-col shadow-[0_1px_5px_0px] shadow-blue-400 dark:shadow-white dark:shadow-[0_1px_5px_0px] bg-gray-500 dark:bg-gray-700 w-[calc(100%/2.15)] md:w-[calc(100%/3.5)] h-30 p-4 dark:border-black rounded-[20px] max-[400px]:text-sm"
         >
-          {forecast}
+          <h2 className="text-sm font-medium h-max p-2">{forecast[0]}</h2>
+          {!/null/.test(forecast[1]) ? (
+            <p className="h-[80%] p-2 flex justify-center items-center max-[400px]:text-2xl text-3xl font-semibold  bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+              {forecast[1]}
+            </p>
+          ) : (
+            <p className="text-lg">Loading...</p>
+          )}
         </div>
       ))}
     </div>

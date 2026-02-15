@@ -6,7 +6,7 @@ const weatherSlice = createSlice({
     data: null,
   },
   reducers: {
-    //Add your reducers here 
+    //Add your reducers here
     weatherData: (state, action) => {
       state.data = action.payload;
     },
@@ -15,4 +15,3 @@ const weatherSlice = createSlice({
 
 export const { weatherData } = weatherSlice.actions;
 export default weatherSlice.reducer;
- 

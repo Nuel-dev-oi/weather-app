@@ -1,58 +1,73 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { getTempImage, weatherMap, mapTempImage } from "../scripts/weatherMap.js";
+import {
+  getTempImage,
+  weatherMap,
+  mapTempImage,
+} from "../scripts/weatherMap.js";
 
 console.log(mapTempImage(getTempImage(40), weatherMap));
 
 const Screen = () => {
   const regionRef = useRef(null);
-  const weatherRef = useRef(null);  
+  const weatherRef = useRef(null);
   const tempRef = useRef(null);
   const weather = useSelector((state) => state.weather.data);
   const [currentWeather, setCurrentWeather] = useState(null);
-  const weatherImg = currentWeather ? mapTempImage(getTempImage(Number(currentWeather.weathercode)), weatherMap) : null;
+  const weatherImg = currentWeather
+    ? mapTempImage(getTempImage(Number(currentWeather.weathercode)), weatherMap)
+    : null;
   let timeZone = currentWeather ? new Date(currentWeather.time) : null;
-  timeZone = timeZone ? timeZone.toLocaleDateString("en-US", {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-}) : null;
+  timeZone = timeZone
+    ? timeZone.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
   const region = weather ? String(weather.timezone).split("/") : null;
 
-  useEffect(() => { 
-      console.log("Weather data in Screen component:", weather);
-      const handleWeatherData = () => {
-        if (weather) {
-          setCurrentWeather(weather.current_weather || null);
-        }
+  useEffect(() => {
+    console.log("Weather data in Screen component:", weather);
+    const handleWeatherData = () => {
+      if (weather) {
+        setCurrentWeather(weather.current_weather || null);
       }
-      handleWeatherData();
-
-  }, [weather, currentWeather]);  
+    };
+    handleWeatherData();
+  }, [weather, currentWeather]);
 
   return (
     <div className="text-black dark:text-white border-2 flex-col md:flex-row md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 border-blue-300 dark:border-gray-950 bg-sm-screen-img md:bg-md-screen-img rounded-[2.5rem] md:rounded-[20px] mt-4 mb-4 bg-no-repeat bg-position-[0%_0%] bg-cover w-[90%] md:w-full h-120 md:h-100 flex justify-center gap-20 md:gap-0 md:justify-around items-center">
-      <div ref={regionRef} className="p-4 h-max w-max white-space-nowrap text-center md:text-start flex flex-col gap-2 justify-center">
+      <div
+        ref={regionRef}
+        className="p-4 h-max md:w-[50%] white-space-nowrap text-center md:text-start flex flex-col gap-2 justify-center"
+      >
         <p className="bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white whitespace-nowrap md:w-70 font-bold text-5xl md:text-3xl max-[400px]:text-4xl h-max p-2">
-          { 
-            region ? `${region[0] || "Loading"}, ${region[1] || ""}` : "Loading..."
-          }
+          {region
+            ? `${region[0] || "Loading"}, ${region[1] || ""}`
+            : "Loading..."}
         </p>
         <p className="text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
           {timeZone || "Loading..."}
         </p>
-      </div> 
-      <div className="p-4 whitespace-nowrap w-full flex flex-row items-center justify-between">
-        <div ref={weatherRef} className="border-5 h-25 w-25 border-none md:translate-x-[250%]"> 
-          {
-            weatherImg && <img src = {weatherImg} alt="Weather Icon" className="h-full w-full object-cover" />
-          }
+      </div>
+      <div className="p-4 whitespace-nowrap w-full md:w-[50%] flex flex-row items-center justify-center md:justify-between gap-40 max-[400px]:gap-10 md:gap-0">
+        <div ref={weatherRef} className="h-25 w-max">
+          {weatherImg && (
+            <img
+              src={weatherImg}
+              alt="Weather Icon"
+              className="h-full w-full object-cover"
+            />
+          )}
         </div>
-        <div ref={tempRef} className="h-25 w-max flex items-center justify-center text-6xl md:text-6xl font-bold md:pr-10 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
-          {
-            currentWeather ? `${currentWeather.temperature}°` : "Loading..."
-          }
+        <div
+          ref={tempRef}
+          className="h-25 w-max flex items-center justify-center max-[400px]:text-6xl text-7xl md:text-4xl lg:text-6xl font-bold md:pr-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white"
+        >
+          {currentWeather ? `${currentWeather.temperature}°` : "Loading..."}
         </div>
       </div>
     </div>

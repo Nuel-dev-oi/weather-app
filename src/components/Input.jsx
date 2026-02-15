@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import searchIcon from "../assets/images/icon-search.svg";
 import axios from "axios";
-import { useDispatch } from "react-redux";  
+import { useDispatch } from "react-redux";
 import { weatherData } from "../weatherSlice";
 
 const Input = () => {
-  const searchRef = useRef(null); 
+  const searchRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
 
@@ -15,33 +15,35 @@ const Input = () => {
   };
 
   const handleSubmit = async (evt) => {
-  evt.preventDefault();
+    evt.preventDefault();
 
-  const geocodingApi = `https://geocoding-api.open-meteo.com/v1/search?name=${searchQuery}&count=1`;
+    const geocodingApi = `https://geocoding-api.open-meteo.com/v1/search?name=${searchQuery}&count=1`;
 
-  try {
-    const geoRes = await axios.get(geocodingApi);
+    try {
+      const geoRes = await axios.get(geocodingApi);
 
-    if (!geoRes.data.results?.length) return;
+      if (!geoRes.data.results?.length) return;
 
-    const { latitude, longitude } = geoRes.data.results[0];
+      const { latitude, longitude } = geoRes.data.results[0];
 
-    // Build weather API directly (no state lag)
-    const weatherApi = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,relativehumidity_2m,precipitation,windspeed_10m,weathercode&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,windspeed_10m_max,windspeed_10m_min,weathercode&timezone=auto`;
+      // Build weather API directly (no state lag)
+      const weatherApi = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,relativehumidity_2m,precipitation,windspeed_10m,weathercode&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,windspeed_10m_max,windspeed_10m_min,weathercode&timezone=auto`;
 
-    const weatherRes = await axios.get(weatherApi);
+      const weatherRes = await axios.get(weatherApi);
 
-    dispatch(weatherData(weatherRes.data));
+      dispatch(weatherData(weatherRes.data));
+    } catch (err) {
+      console.error(err);
+    }
 
-  } catch (err) {
-    console.error(err);
-  }
-
-  setSearchQuery("");
-};
+    setSearchQuery("");
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="md:col-start-1 md:col-end-2 md:row-start-1 md: flex flex-col h-max w-screen p-4 md:justify-center justify-between items-center gap-2 md:flex-row md:gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className="md:col-start-1 md:col-end-2 md:row-start-1 md: flex flex-col h-max w-screen p-4 md:justify-center justify-between items-center gap-2 md:flex-row md:gap-2"
+    >
       <div className="md:grow-0 grow w-[90%] flex mt-2 md:mt-0 md:h-12 h-10 md:justify-center justify-start gap-0 md:w-[50%]">
         <img
           src={searchIcon}

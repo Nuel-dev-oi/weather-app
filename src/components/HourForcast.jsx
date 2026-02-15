@@ -14,8 +14,9 @@ const HourForcast = ({ hourforcasts }) => {
   return (
     <div className="md:w-full md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-5 rounded-[20px] text-black dark:text-white flex flex-col w-[90%] items-center p-2 justify-start bg-gray-500 dark:bg-gray-700 mb-4 md:h-[95%]">
       <div className="flex justify-between items-center w-full mb-2">
-        <h2
-        className="text-xl p-2 font-bold">Hourly Forcast</h2>
+        <h2 className="text-xl p-2 font-bold bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+          Hourly Forcast
+        </h2>
         <button className="bg-gray-600 dark:bg-gray-800 flex justify-between items-center p-2 max-[400px]:p-1 gap-2 max-[400px]:text-sm max-[400px]:gap-4">
           <span>Tuesday</span>
           <img
@@ -31,7 +32,10 @@ const HourForcast = ({ hourforcasts }) => {
       </div>
       <div className="h-full w-[95%] flex flex-col items-start justify-between gap-2 p-4 overflow-y-auto grow-0 max-[400px]:p-2">
         {hourforcasts.map((hourforcast, index) => (
-          <div key={index} className="border border-white rounded-xl w-full p-2 shadow-[0px_0px_2px_1px] h-20">
+          <div
+            key={index}
+            className="border border-white rounded-xl w-full p-2 shadow-[0px_0px_2px_1px] h-20"
+          >
             hourforcast
           </div>
         ))}
