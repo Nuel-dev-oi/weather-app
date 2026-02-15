@@ -12,6 +12,14 @@ const App = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
   const weather = useSelector((state) => state.weather.data);
+  const daily = weather
+    ? weather.daily
+    : {
+        time: null,
+        weathercode: null,
+        apparent_temperature_max: null,
+        apparent_temperature_min: null,
+      };
   const userTheme = JSON.parse(localStorage.getItem("theme"));
   const [feelsLike, setFeelsLike] = useState(null);
   const [humidity, setHumidity] = useState(null);
@@ -78,17 +86,7 @@ const App = () => {
           ["Precipitation", precipitation + "mm"],
         ]}
       />
-      <DailyForecast
-        dailycasts={[
-          "dailycast 1",
-          "dailycast 2",
-          "dailycast 3",
-          "dailycast 4",
-          "dailycast 5",
-          "dailycast 6",
-          "dailycast 7",
-        ]}
-      />
+      <DailyForecast dailycasts={daily} />
       <HourForcast
         hourforcasts={[
           "hourcast 1",

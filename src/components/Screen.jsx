@@ -6,8 +6,6 @@ import {
   mapTempImage,
 } from "../scripts/weatherMap.js";
 
-console.log(mapTempImage(getTempImage(40), weatherMap));
-
 const Screen = () => {
   const regionRef = useRef(null);
   const weatherRef = useRef(null);
