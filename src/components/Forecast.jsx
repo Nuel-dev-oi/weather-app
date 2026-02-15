@@ -2,7 +2,7 @@ import React from "react";
 
 const Forecast = ({ forecasts }) => {
   return (
-    <div className="mb-4 md:col-start-2 md:col-end-3 md:row-start-3 md:row-end-4 w-[90%] md:w-full h-max p-3 flex flex-wrap md:flex-nowrap gap-4 md:gap-4 justify-center md:justify-between items-center md:items-center bg-transparent text-black dark:text-white">
+    <div className="overflow-x-auto mb-4 md:col-start-2 md:col-end-3 md:row-start-3 md:row-end-4 w-[90%] md:w-full h-max p-3 flex flex-wrap md:flex-nowrap gap-4 md:gap-4 justify-center md:justify-between items-center md:items-center bg-transparent text-black dark:text-white">
       {forecasts.map((forecast, index) => (
         <div
           key={index}
