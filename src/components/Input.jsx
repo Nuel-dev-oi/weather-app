@@ -61,7 +61,7 @@ const Input = () => {
       <input
         type="submit"
         value="Search"
-        className="md:h-12 md:w-[10%] grow-0 w-[90%] p-2 bg-blue-600 dark:bg-blue-800 text-white rounded-[10px] hover:bg-blue-700 dark:hover:bg-blue-900 cursor-pointer"
+        className="shadow-[0px_2px_5px_0px] active:shadow-[0px_0px_0px_0px] shadow-blue-600 md:h-12 md:w-[10%] grow-0 w-[90%] p-2 bg-blue-600 dark:bg-blue-800 text-white rounded-[10px] hover:bg-blue-700 dark:hover:bg-blue-900 cursor-pointer"
       />
     </form>
   );

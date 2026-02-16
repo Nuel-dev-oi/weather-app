@@ -9,12 +9,6 @@ const DailyForecast = ({
     apparent_temperature_min,
   },
 }) => {
-  console.log(
-    time,
-    weathercode,
-    apparent_temperature_max,
-    apparent_temperature_min,
-  );
   return (
     <div className="md:col-start-2 md:col-end-3 md:row-start-4 md:row-end-5 h-full flex flex-col items-center mb-4 whitespace-nowrap bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
       <h2 className="text-left p-2 w-full font-bold">Daily forcast</h2>

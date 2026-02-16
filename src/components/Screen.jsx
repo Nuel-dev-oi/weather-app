@@ -37,7 +37,7 @@ const Screen = () => {
   }, [weather, currentWeather]);
 
   return (
-    <div className="text-black dark:text-white border-2 flex-col md:flex-row md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 border-blue-300 dark:border-gray-950 bg-sm-screen-img md:bg-md-screen-img rounded-[2.5rem] md:rounded-[20px] mt-4 mb-4 bg-no-repeat bg-position-[0%_0%] bg-cover w-[90%] md:w-full h-120 md:h-100 flex justify-center gap-20 md:gap-0 md:justify-around items-center">
+    <div className="text-black dark:text-white border-2 flex-col md:flex-row md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 border-blue-300 dark:border-gray-950 bg-sm-screen-img md:bg-md-screen-img rounded-[2.5rem] md:rounded-4xl mt-4 mb-4 bg-no-repeat bg-position-[0%_0%] bg-cover w-[90%] md:w-full h-120 md:h-100 flex justify-center gap-20 md:gap-0 md:justify-around items-center">
       <div
         ref={regionRef}
         className="p-4 h-max md:w-[50%] white-space-nowrap text-center md:text-start flex flex-col gap-2 justify-center"
