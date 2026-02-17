@@ -2,6 +2,23 @@
 
 A robust React application designed to provide real-time weather insights. This project utilizes **Redux** for global state management and features a persistent Dark/Light theme toggle.
 
+## 🚀 Getting Started
+
+To run this project locally, follow these steps:
+
+1.  **Install Dependencies**
+    Run the following command to install all required packages:
+    ```bash
+    npm install
+    ```
+
+2.  **Start the App**
+    Launch the development server:
+    ```bash
+    npm run dev
+    ```
+    > **📱 Mobile View:** Once the server starts, a QR code will be generated in your terminal. Scan this code to view and test the application directly on your mobile device.
+
 ## 📡 Data Integration
 
 **I am handling data from the Open Metro API.**
@@ -18,7 +35,7 @@ Instead of simply displaying raw values, the application utilizes `useEffect` ho
 
 - **Average Calculation:** Calculates the average `apparent_temperature` and `relativehumidity_2m` from the hourly data array to determine "Feels Like" and "Humidity" metrics.
 - **Precipitation Aggregation:** Sums up the total hourly precipitation to give a comprehensive daily view.
-- **Real-time Wind:** extracts the current wind speed directly from the weather object.
+- **Real-time Wind:** Extracts the current wind speed directly from the weather object.
 
 ### 2. Theme Persistence
 

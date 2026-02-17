@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import dropDown from "../assets/images/icon-dropdown.svg";
 import HourlyDataForcast from "./HourlyDataForcast";
 
@@ -18,6 +18,7 @@ const HourForcast = ({
           return zone;
       })
     : null;
+  const imgRef = useRef();
   const codes = [];
 
   if (timeZone) {
@@ -56,6 +57,7 @@ const HourForcast = ({
         <button className="text-white bg-gray-600 dark:bg-gray-800 flex justify-between items-center p-2 max-[400px]:p-1 gap-2 max-[400px]:text-sm max-[400px]:gap-4">
           <span>{day}</span>
           <img
+            ref={imgRef}
             src={dropDown}
             alt="Dropdown Icon"
             className="w-4 lg:w-4 h-4 transition-transform duration-300 max-sm:w-4 max-[400px]:-translate-x-1.5"
@@ -96,6 +98,8 @@ const HourForcast = ({
               className="shadow md:hover:shadow-[0px_0px_2px_1px] md:active:shadow-none hover:cursor-pointer active:shadow-[0px_0px_1px_1px] w-full text-white hover:bg-gray-900 p-2 rounded-xl font-bold bg-linear-to-r from-orange-500 to-green-500 dark:bg-none"
               onClick={(evt) => {
                 setDay(evt.target.innerText);
+                setIsOpen(!isOpen);
+                imgRef.current.classList.toggle("rotate-180");
               }}
             >
               {Weekday}
