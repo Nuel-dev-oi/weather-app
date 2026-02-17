@@ -41,12 +41,12 @@ export const weatherMap = [
 export function mapTempImage(weather, array) {
   const weatherImgArray = array.filter((item) => item[0] === weather);
   if (weatherImgArray.length === 0) {
-    console.log("Weather not found in array");
+    //console.log("Weather not found in array");
     return sunny;
   }
-  console.log("Weather Image Array:", weatherImgArray);
+  //console.log("Weather Image Array:", weatherImgArray);
   if (!("1" in weatherImgArray[0])) {
-    console.log("not in weatherArray[0]");
+    //console.log("not in weatherArray[0]");
     return;
   }
   return weatherImgArray[0][1];

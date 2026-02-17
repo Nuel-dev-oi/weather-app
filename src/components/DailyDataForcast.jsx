@@ -13,7 +13,7 @@ const DailyDataForcast = ({
     apparent_temperature_min,
   ],
 }) => {
-  console.log(weathercode);
+  //console.log(weathercode);
   let timeZone = cast ? new Date(cast) : null;
   timeZone = timeZone
     ? timeZone.toLocaleDateString("en-US", {

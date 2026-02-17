@@ -20,6 +20,13 @@ const App = () => {
         apparent_temperature_max: null,
         apparent_temperature_min: null,
       };
+  const hourly = weather
+    ? weather.hourly
+    : {
+        time: null,
+        weathercode: null,
+        apparent_temperature: null,
+      };
   const userTheme = JSON.parse(localStorage.getItem("theme"));
   const [feelsLike, setFeelsLike] = useState(null);
   const [humidity, setHumidity] = useState(null);
@@ -87,18 +94,7 @@ const App = () => {
         ]}
       />
       <DailyForecast dailycasts={daily} />
-      <HourForcast
-        hourforcasts={[
-          "hourcast 1",
-          "hourcast 2",
-          "hourcast 3",
-          "hourcast 4",
-          "hourcast 5",
-          "hourcast 6",
-          "hourcast 7",
-          "hourcast 8",
-        ]}
-      />
+      <HourForcast hourforcasts={hourly} />
     </Layout>
   );
 };

@@ -4,12 +4,13 @@ import dropDown from "../assets/images/icon-dropdown.svg";
 
 const Unit = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   function handleUnitClick(evt) {
     evt.target.classList.toggle("rotate-180");
   }
 
   useEffect(() => {
-    console.log("Unit dropdown is open:", isOpen);
+    //console.log("Unit dropdown is open:", isOpen);
   }, [isOpen]);
 
   return (
