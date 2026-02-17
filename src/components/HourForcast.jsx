@@ -92,19 +92,28 @@ const HourForcast = ({
             "Friday",
             "Saturday",
             "Sunday",
-          ].map((Weekday, index) => (
-            <div
-              key={index}
-              className="shadow md:hover:shadow-[0px_0px_2px_1px] md:active:shadow-none hover:cursor-pointer active:shadow-[0px_0px_1px_1px] w-full text-white hover:bg-gray-900 p-2 rounded-xl font-bold bg-linear-to-r from-orange-500 to-green-500 dark:bg-none"
-              onClick={(evt) => {
-                setDay(evt.target.innerText);
-                setIsOpen(!isOpen);
-                imgRef.current.classList.toggle("rotate-180");
-              }}
-            >
-              {Weekday}
-            </div>
-          ))}
+          ]
+            .filter((weekday, index, array) => {
+              const day = new Date().toLocaleDateString("en-US", {
+                weekday: "long",
+              });
+              const indexOfDay = array.indexOf(day);
+              if (index < indexOfDay) return false;
+              return true;
+            })
+            .map((Weekday, index) => (
+              <div
+                key={index}
+                className="shadow md:hover:shadow-[0px_0px_2px_1px] md:active:shadow-none hover:cursor-pointer active:shadow-[0px_0px_1px_1px] w-full text-white hover:bg-gray-900 p-2 rounded-xl font-bold bg-linear-to-r from-orange-500 to-green-500 dark:bg-none"
+                onClick={(evt) => {
+                  setDay(evt.target.innerText);
+                  setIsOpen(!isOpen);
+                  imgRef.current.classList.toggle("rotate-180");
+                }}
+              >
+                {Weekday}
+              </div>
+            ))}
         </div>
       )}
     </div>
