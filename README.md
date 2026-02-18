@@ -8,6 +8,7 @@ To run this project locally, follow these steps:
 
 1.  **Install Dependencies**
     Run the following command to install all required packages:
+
     ```bash
     npm install
     ```
