@@ -10,7 +10,7 @@ const Forecast = ({ forecasts }) => {
         >
           <h2 className="text-sm font-medium h-max p-2">{forecast[0]}</h2>
           {!/null/.test(forecast[1]) ? (
-            <p className="h-[80%] p-2 flex justify-center items-center max-[400px]:text-2xl text-3xl font-semibold  bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+            <p className="h-[80%] p-2 flex justify-center items-center max-[400px]:text-2xl text-3xl font-semibold whitespace-nowrap bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
               {forecast[1]}
             </p>
           ) : (

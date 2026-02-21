@@ -42,9 +42,9 @@ const Screen = () => {
         ref={regionRef}
         className="p-4 h-max md:w-[50%] white-space-nowrap text-center md:text-start flex flex-col gap-2 justify-center"
       >
-        <p className="bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white whitespace-nowrap md:w-70 font-bold text-5xl md:text-3xl max-[400px]:text-4xl h-max p-2">
+        <p className="whitespace-nowrap md:w-70 font-bold text-5xl md:text-3xl max-[400px]:text-3xl h-max p-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
           {region
-            ? `${region[0] || "Loading"}, ${region[1] || ""}`
+            ? `${region[0] || "Loading"}, ${region[1].replace(/_/gi, " ") || ""}`
             : "Loading..."}
         </p>
         <p className="text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
