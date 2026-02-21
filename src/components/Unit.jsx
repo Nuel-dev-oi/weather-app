@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import unitLogo from "../assets/images/icon-units.svg";
 import dropDown from "../assets/images/icon-dropdown.svg";
 import checkMark from "../assets/images/icon-checkmark.svg";
+import { useDispatch } from "react-redux";
+import { selectUnit } from "../unitSlice";
 
 const Unit = () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState({
     Temperature: "Celcius (°C)",
@@ -23,8 +26,8 @@ const Unit = () => {
   }
 
   useEffect(() => {
-    //console.log("Unit dropdown is open:", isOpen);
-  }, [isOpen]);
+    dispatch(selectUnit(selected));
+  }, [selected, dispatch]);
 
   return (
     <div className="relative h-max">
