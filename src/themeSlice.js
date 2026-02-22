@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+const savedTheme = JSON.parse(localStorage.getItem("theme"));
+ 
 const themeSlice = createSlice({
   name: "theme",
-  initialState: false,
+  initialState: savedTheme ?? false,
   reducers: {
     //Add your reducers here
     mode: (state) => !state,

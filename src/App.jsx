@@ -1,16 +1,14 @@
-import React, { useEffect, useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Layout from "./components/Layout.jsx";
 import Input from "./components/Input.jsx";
 import Screen from "./components/Screen.jsx";
 import Forecast from "./components/Forecast.jsx";
-import { mode } from "./themeSlice.js";
 import DailyForecast from "./components/DailyForcast.jsx";
 import HourForcast from "./components/HourForcast.jsx";
 import convertImperialUnits from "./scripts/unitConversion.js";
 
 const App = () => {
-  const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
   const weather = useSelector((state) => state.weather.data);
   const unit = useSelector((state) => state.units.data);
@@ -36,7 +34,7 @@ const App = () => {
         weathercode: null,
         apparent_temperature: null,
       };
-  const userTheme = JSON.parse(localStorage.getItem("theme"));
+  
   const [feelsLike, setFeelsLike] = useState(null);
   const [humidity, setHumidity] = useState(null);
   const [wind, setWind] = useState(null);
@@ -66,29 +64,17 @@ const App = () => {
     })();
   }, [weather]);
 
-  const handlePageReload = useCallback(() => {
-    if (userTheme) {
-      document.documentElement.classList.add("dark");
-      if (!theme) {
-        dispatch(mode());
-      }
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", JSON.stringify(false));
-      if (theme) {
-        dispatch(mode());
-      }
-    }
-  }, [theme, userTheme, dispatch]);
-
   useEffect(() => {
-    window.addEventListener("load", handlePageReload);
+  if (theme) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+  
+  localStorage.setItem("theme", JSON.stringify(theme));
+}, [theme]);
 
-    return () => {
-      window.removeEventListener("load", handlePageReload);
-    };
-  }, [handlePageReload]);
-
+  
   return (
     <Layout>
       {/* Other components go here */}

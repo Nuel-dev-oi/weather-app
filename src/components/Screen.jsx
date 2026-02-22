@@ -57,7 +57,7 @@ const Screen = () => {
             ? `${region[0] || "Loading"}, ${region[1].replace(/_/gi, " ") || ""}`
             : <Spinner size="md"/>}
         </p>
-        <p className="border text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+        <p className="text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
           {timeZone}
         </p>
       </div>
