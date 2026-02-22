@@ -5,13 +5,21 @@ import {
   weatherMap,
   mapTempImage,
 } from "../scripts/weatherMap.js";
+import convertImperialUnits from "../scripts/unitConversion.js";
 
 const Screen = () => {
   const regionRef = useRef(null);
   const weatherRef = useRef(null);
   const tempRef = useRef(null);
   const weather = useSelector((state) => state.weather.data);
+  const unit = useSelector((state) => state.units.data);
+  const [temp] = convertImperialUnits(
+    unit["Temperature"],
+    unit["Wind Speed"],
+    unit["Precipitation"],
+  );
   const [currentWeather, setCurrentWeather] = useState(null);
+
   const weatherImg = currentWeather
     ? mapTempImage(getTempImage(Number(currentWeather.weathercode)), weatherMap)
     : null;
@@ -28,6 +36,7 @@ const Screen = () => {
 
   useEffect(() => {
     console.log("Weather data in Screen component:", weather);
+
     const handleWeatherData = () => {
       if (weather) {
         setCurrentWeather(weather.current_weather || null);
@@ -65,7 +74,11 @@ const Screen = () => {
           ref={tempRef}
           className="h-25 w-max flex items-center justify-center max-[400px]:text-6xl text-7xl md:text-4xl lg:text-6xl font-bold md:pr-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white"
         >
-          {currentWeather ? `${currentWeather.temperature}°` : "Loading..."}
+          {currentWeather
+            ? unit["Temperature"] === "Celcius (°C)"
+              ? `${currentWeather.temperature}°`
+              : `${Number(temp(currentWeather.temperature)).toFixed(1)}°`
+            : "Loading..."}
         </div>
       </div>
     </div>

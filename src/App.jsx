@@ -7,11 +7,20 @@ import Forecast from "./components/Forecast.jsx";
 import { mode } from "./themeSlice.js";
 import DailyForecast from "./components/DailyForcast.jsx";
 import HourForcast from "./components/HourForcast.jsx";
+import convertImperialUnits from "./scripts/unitConversion.js";
 
 const App = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme);
   const weather = useSelector((state) => state.weather.data);
+  const unit = useSelector((state) => state.units.data);
+  const [temp, speed, prep] = convertImperialUnits(
+    unit["Temperature"],
+    unit["Wind Speed"],
+    unit["Precipitation"],
+  );
+  console.log(temp, speed, prep);
+
   const daily = weather
     ? weather.daily
     : {
@@ -87,10 +96,20 @@ const App = () => {
       <Screen />
       <Forecast
         forecasts={[
-          ["Feels Like", feelsLike + "°"],
+          [
+            "Feels Like",
+            `${unit["Temperature"] === "Celcius (°C)" ? `${feelsLike}` : `${temp(feelsLike)}`}` +
+              "°",
+          ],
           ["Humidity ", humidity + "%"],
-          ["Wind", wind + "km/h"],
-          ["Precipitation", precipitation + "mm"],
+          [
+            "Wind",
+            `${unit["Wind Speed"] === "km/h" ? `${wind + "km/h"}` : `${speed(wind) + "mph"}`}`,
+          ],
+          [
+            "Precipitation",
+            `${unit["Precipitation"] === "Millimeters (mm)" ? `${precipitation + "mm"}` : `${speed(precipitation) + "cm"}`}`,
+          ],
         ]}
       />
       <DailyForecast dailycasts={daily} />

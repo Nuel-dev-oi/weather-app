@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const unitSlice = createSlice({
   name: "units",
   initialState: {
-    data: null,
+    data: {
+      Temperature: "Celcius (°C)",
+      "Wind Speed": "km/h",
+      Precipitation: "Millimeters (mm)",
+    },
   },
   reducers: {
     //Add your reducers here
