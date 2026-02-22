@@ -1,5 +1,6 @@
 import React from "react";
 import DailyDataForcast from "./DailyDataForcast.jsx";
+import Spinner from "./Spinner.jsx";
 
 const DailyForecast = ({
   dailycasts: {
@@ -28,7 +29,7 @@ const DailyForecast = ({
             />
           ))
         ) : (
-          <p>Loading...</p>
+          <Spinner size="lg" />
         )}
       </div>
     </div>

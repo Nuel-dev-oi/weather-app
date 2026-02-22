@@ -1,4 +1,5 @@
 import React from "react";
+import Spinner from "./Spinner.jsx";
 
 const Forecast = ({ forecasts }) => {
   return (
@@ -14,7 +15,7 @@ const Forecast = ({ forecasts }) => {
               {forecast[1]}
             </p>
           ) : (
-            <p className="text-lg">Loading...</p>
+            <Spinner size="sm"/>
           )}
         </div>
       ))}

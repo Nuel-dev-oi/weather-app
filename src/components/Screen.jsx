@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import Spinner from "./Spinner.jsx";
 import {
   getTempImage,
   weatherMap,
@@ -54,21 +55,21 @@ const Screen = () => {
         <p className="whitespace-nowrap md:w-70 font-bold text-5xl md:text-3xl max-[400px]:text-3xl h-max p-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
           {region
             ? `${region[0] || "Loading"}, ${region[1].replace(/_/gi, " ") || ""}`
-            : "Loading..."}
+            : <Spinner size="md"/>}
         </p>
-        <p className="text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
-          {timeZone || "Loading..."}
+        <p className="border text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+          {timeZone}
         </p>
       </div>
       <div className="p-4 whitespace-nowrap w-full md:w-[50%] flex flex-row items-center justify-center md:justify-between gap-40 max-[400px]:gap-10 md:gap-0">
         <div ref={weatherRef} className="h-25 w-max">
-          {weatherImg && (
+          {weatherImg ? (
             <img
               src={weatherImg}
               alt="Weather Icon"
               className="h-full w-full object-cover"
             />
-          )}
+          ) : <Spinner size="md"/> }
         </div>
         <div
           ref={tempRef}
@@ -78,7 +79,7 @@ const Screen = () => {
             ? unit["Temperature"] === "Celcius (°C)"
               ? `${currentWeather.temperature}°`
               : `${Number(temp(currentWeather.temperature)).toFixed(1)}°`
-            : "Loading..."}
+            : <Spinner size="lg"/>}
         </div>
       </div>
     </div>

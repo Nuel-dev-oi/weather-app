@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import dropDown from "../assets/images/icon-dropdown.svg";
 import HourlyDataForcast from "./HourlyDataForcast";
+import Spinner from "./Spinner";
 
 const HourForcast = ({
   hourforcasts: { time, weathercode, apparent_temperature },
@@ -79,7 +80,7 @@ const HourForcast = ({
             );
           })
         ) : (
-          <p>Loading...</p>
+          <Spinner size="lg" />
         )}
       </div>
       {isOpen && (
