@@ -31,7 +31,6 @@ const HourForcast = ({
       }
     }
   }
-  console.log(codes);
 
   const weatherCodes = [];
   const temperatures = [];
@@ -42,8 +41,6 @@ const HourForcast = ({
       temperatures.push(apparent_temperature[code]);
     }
   }
-  console.log(weatherCodes);
-  console.log(temperatures);
 
   function handleUnitClick(evt) {
     evt.target.classList.toggle("rotate-180");

@@ -15,7 +15,7 @@ const Forecast = ({ forecasts }) => {
               {forecast[1]}
             </p>
           ) : (
-            <Spinner size="sm"/>
+            <Spinner size="sm" />
           )}
         </div>
       ))}

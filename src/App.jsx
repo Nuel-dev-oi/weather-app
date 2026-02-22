@@ -17,7 +17,6 @@ const App = () => {
     unit["Wind Speed"],
     unit["Precipitation"],
   );
-  console.log(temp, speed, prep);
 
   const daily = weather
     ? weather.daily
@@ -34,7 +33,7 @@ const App = () => {
         weathercode: null,
         apparent_temperature: null,
       };
-  
+
   const [feelsLike, setFeelsLike] = useState(null);
   const [humidity, setHumidity] = useState(null);
   const [wind, setWind] = useState(null);
@@ -65,16 +64,15 @@ const App = () => {
   }, [weather]);
 
   useEffect(() => {
-  if (theme) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-  
-  localStorage.setItem("theme", JSON.stringify(theme));
-}, [theme]);
+    if (theme) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
-  
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
+
   return (
     <Layout>
       {/* Other components go here */}
@@ -94,7 +92,7 @@ const App = () => {
           ],
           [
             "Precipitation",
-            `${unit["Precipitation"] === "Millimeters (mm)" ? `${precipitation + "mm"}` : `${speed(precipitation) + "cm"}`}`,
+            `${unit["Precipitation"] === "Millimeters (mm)" ? `${precipitation + "mm"}` : `${prep(precipitation) + "cm"}`}`,
           ],
         ]}
       />

@@ -36,8 +36,6 @@ const Screen = () => {
   const region = weather ? String(weather.timezone).split("/") : null;
 
   useEffect(() => {
-    console.log("Weather data in Screen component:", weather);
-
     const handleWeatherData = () => {
       if (weather) {
         setCurrentWeather(weather.current_weather || null);
@@ -52,11 +50,13 @@ const Screen = () => {
         ref={regionRef}
         className="p-4 h-max md:w-[50%] white-space-nowrap text-center md:text-start flex flex-col gap-2 justify-center"
       >
-        <p className="whitespace-nowrap md:w-70 font-bold text-5xl md:text-3xl max-[400px]:text-3xl h-max p-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
-          {region
-            ? `${region[0] || "Loading"}, ${region[1].replace(/_/gi, " ") || ""}`
-            : <Spinner size="md"/>}
-        </p>
+        <div className="whitespace-nowrap md:w-70 font-bold text-5xl md:text-3xl max-[400px]:text-3xl h-max p-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+          {region ? (
+            `${region[0] || "Loading"}, ${region[1].replace(/_/gi, " ") || ""}`
+          ) : (
+            <Spinner size="md" />
+          )}
+        </div>
         <p className="text-[14px] font-medium bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
           {timeZone}
         </p>
@@ -69,17 +69,23 @@ const Screen = () => {
               alt="Weather Icon"
               className="h-full w-full object-cover"
             />
-          ) : <Spinner size="md"/> }
+          ) : (
+            <Spinner size="md" />
+          )}
         </div>
         <div
           ref={tempRef}
           className="h-25 w-max flex items-center justify-center max-[400px]:text-6xl text-7xl md:text-4xl lg:text-6xl font-bold md:pr-2 bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white"
         >
-          {currentWeather
-            ? unit["Temperature"] === "Celcius (°C)"
-              ? `${currentWeather.temperature}°`
-              : `${Number(temp(currentWeather.temperature)).toFixed(1)}°`
-            : <Spinner size="lg"/>}
+          {currentWeather ? (
+            unit["Temperature"] === "Celcius (°C)" ? (
+              `${currentWeather.temperature}°`
+            ) : (
+              `${Number(temp(currentWeather.temperature)).toFixed(1)}°`
+            )
+          ) : (
+            <Spinner size="lg" />
+          )}
         </div>
       </div>
     </div>
