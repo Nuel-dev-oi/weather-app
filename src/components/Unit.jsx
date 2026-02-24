@@ -50,42 +50,43 @@ const Unit = () => {
           }}
         />
       </button>
-      {isOpen && (
-        <div className="shadow-[0px_0px_2px_1px] shadow-blue-900 dark:shadow-zinc-200 absolute top-13 right-0 max-[400px]:top-13 p-4 w-50 bg-gray-600 dark:bg-gray-800 rounded-xl ">
-          <h2 className="whitespace-nowrap font-bold bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
-            Switch to Imperial
-          </h2>
-          {[
-            ["Temperature", ["Celcius (°C)", "Fahrenheit (°F)"]],
-            ["Wind Speed", ["km/h", "mph"]],
-            ["Precipitation", ["Millimeters (mm)", "Centimeters (cm)"]],
-          ].map((unit, index) => {
-            return (
-              <div
-                key={index}
-                className="units text-white shadow-[0px_0px_5px_1px] nth-[2]:mt-2 p-2 whitespace-nowrap"
-              >
-                <h3 className="font-bold mb-2">{unit[0]}</h3>
-                {unit[1].map((temp, index) => (
-                  <div key={index}>
-                    <div
-                      className="hover:shadow-[0px_0px_2px_1px] rounded flex gap-4 w-full justify-between cursor-pointer text-black dark:text-white active:bg-black active:text-white"
-                      onClick={() => {
-                        handleSelectUnit(unit[0], temp);
-                      }}
-                    >
-                      {temp}
-                      {selected[unit[0]] === temp && (
-                        <img src={checkMark} alt="chec" className="chec" />
-                      )}
-                    </div>
+      <div
+        className={`shadow-[0px_0px_2px_1px] shadow-blue-900 dark:shadow-zinc-200 absolute top-13 right-0 max-[400px]:top-13 w-50 overflow-hidden bg-gray-600 dark:bg-gray-800 rounded-xl transition-all duration-300 ease-in-out
+          ${isOpen ? "max-h-96 p-4 opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <h2 className="whitespace-nowrap font-bold bg-linear-to-r from-orange-500 to-green-500 bg-clip-text text-transparent dark:text-white">
+          Switch to Imperial
+        </h2>
+        {[
+          ["Temperature", ["Celcius (°C)", "Fahrenheit (°F)"]],
+          ["Wind Speed", ["km/h", "mph"]],
+          ["Precipitation", ["Millimeters (mm)", "Centimeters (cm)"]],
+        ].map((unit, index) => {
+          return (
+            <div
+              key={index}
+              className="units text-white shadow-[0px_0px_5px_1px] nth-[2]:mt-2 p-2 whitespace-nowrap"
+            >
+              <h3 className="font-bold mb-2">{unit[0]}</h3>
+              {unit[1].map((temp, index) => (
+                <div key={index}>
+                  <div
+                    className="hover:shadow-[0px_0px_2px_1px] rounded flex gap-4 w-full justify-between cursor-pointer text-black dark:text-white active:bg-black active:text-white"
+                    onClick={() => {
+                      handleSelectUnit(unit[0], temp);
+                    }}
+                  >
+                    {temp}
+                    {selected[unit[0]] === temp && (
+                      <img src={checkMark} alt="check Mark" />
+                    )}
                   </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-      )}
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
